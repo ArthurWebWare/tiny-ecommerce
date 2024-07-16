@@ -1,0 +1,60 @@
+{% extends 'base.twig' %}
+
+{% block main_content %}
+main content
+{% endblock %}
+
+{% block prebody_js_scripts %}
+    <script>
+        function closeFilterMenu() {
+            let filters_menu = document.querySelector(".products-filters");
+            if(filters_menu){
+                filters_menu.classList.add("translate-x-full");
+            }
+        }
+
+        function initHeader() {
+            return {
+                scrollToTop: false,
+                showMenu: false,
+                oldValue: 0,
+                newValue: 0,
+
+                changeFix() {
+                    window.querySelector('html').classList.toggle('overflow-hidden');
+                },
+
+                scroll() {
+                    window.addEventListener("scroll", () => {
+                        this.newValue = window.scrollY;
+                        if (this.newValue > this.oldValue) {
+                            this.scrollToTop = true;
+                        } else {
+                            this.scrollToTop = false;
+                        }
+                        this.oldValue = this.newValue;
+                    });
+
+                    window.addEventListener("cart-updated", (event) => {
+                        this.scrollToTop = false;
+                        replay("cart");
+
+                        if (!event.detail) {
+                            loadAnimation("cart-empty-2");
+                            replay("cart-empty-2");
+                        }
+                    });
+                    window.addEventListener("favorites-updated", () => {
+                        this.scrollToTop = false;
+                        replay("favorites");
+                    });
+                    window.addEventListener("compare-updated", () => {
+                        this.scrollToTop = false;
+                        replay("compare");
+                    });
+                }
+            };
+        }
+    </script>
+    <script src="js/CoolHover.js"></script>
+{% endblock %}

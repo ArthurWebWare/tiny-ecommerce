@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="{{ session_lang }}" class="overflow-x-hidden">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <title>{{ page_title }}</title>
+
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ keywords }}">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="application-name" content="{{ page_title }}">
+
+    <meta name="og:title" content="{{ page_title }}">
+    <meta name="og:description" content="{{ description }}">
+    <meta name="og:image" content="{{ image }}">
+    <meta name="og:type" content="website">
+
+    <meta name="theme-color" content='#013252'>
+    <link rel="search" type="application/opensearchdescription+xml" href="https://ultra.md/opensearch.xml" title="Ultra Moldova">
+
+    <link rel="preconnect" href="https://cdn-ultra.esempla.com">
+
+    <link title="Русский" dir="ltr" type="text/html" rel="alternate" hreflang="ru-md" href="{{ ru_href }}">
+    <link title="Română" dir="ltr" type="text/html" rel="alternate" hreflang="ro-md" href="{{ ro_href }}">
+    <link title="Română" dir="ltr" type="text/html" rel="alternate" hreflang="x-default" href="{{ ro_href }}">
+
+    <link rel="shortcut icon" href="{{ asset }}">
+    <link rel="shortcut icon" href="{{ asset }}" sizes="16x16">
+    <link rel="shortcut icon" href="{{ asset }}" sizes="32x32">
+    <link rel="shortcut icon" href="{{ asset }}" sizes="96x96">
+    <link rel="shortcut icon" href="{{ asset }}" sizes="194x194">
+    <link rel="apple-touch-icon" href="{{ asset }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset }}">
+    <link rel="apple-touch-icon" sizes="196x196" href="{{ asset }}">
+
+    {#
+    {{--    if(Route::is(['product', 'brand', 'category', 'promo']))--}}
+    {{--        <link rel="amphtml"--}}
+    {{--              href="{{ route('amp.' . request()->route()->getName(), request()->{request()->route()->getName()}) }}">--}}
+    {{--    endif--}}
+    #}
+
+    <link rel="canonical" href="{{ canonical_url }}">
+    {# yield('prevnext') #}
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    {# stack('css')
+
+    livewireStyles #}
+
+    <style>
+        [x-cloak=""] {
+            display: none
+        }
+
+        [x-cloak="opacity"] {
+            opacity: 0;
+        }
+
+        media (max-width: 768px) {
+            [x-cloak="mobile"] {
+                display: none;
+            }
+        }
+    </style>
+
+    <!-- Scripts -->
+    <script src="js/app.js" defer></script>
+
+    {#
+    if(config('app.env') == 'production')
+        <script src="//inv-dmp.admixer.net/dmpcnt.js?cntoid=e9f65551-f3af-43f9-b1d4-bdb6dcd84ce4"
+                async="async"></script>
+
+        <!-- Facebook Pixel Code -->
+        <script>
+          setTimeout(function() {
+            !function(f, b, e, v, n, t, s) {
+              if (f.fbq) return;
+              n = f.fbq = function() {
+                n.callMethod ?
+                  n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+              };
+              if (!f._fbq) f._fbq = n;
+              n.push = n;
+              n.loaded = !0;
+              n.version = '2.0';
+              n.queue = [];
+              t = b.createElement(e);
+              t.async = !0;
+              t.src = v;
+              s = b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t, s);
+            }(window, document, 'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1366483820617084');
+            fbq('track', 'PageView');
+          }, 5000);
+        </script>
+        <!-- End Facebook Pixel Code -->
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                /** init gtm after 3500 seconds - this could be adjusted */
+                setTimeout(initGTM, 3500);
+                setTimeout(initGTA, 3500);
+            });
+            document.addEventListener("scroll", initGTMOnEvent);
+            document.addEventListener("mousemove", initGTMOnEvent);
+            document.addEventListener("touchstart", initGTMOnEvent);
+
+          function initGTMOnEvent(event) {
+            initGTM();
+            event.currentTarget.removeEventListener(event.type, initGTMOnEvent);
+          }
+
+          function initGTM() {
+            if (window.gtmDidInit) {
+              return false;
+            }
+            window.gtmDidInit = true;
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            // ensure PageViews is always tracked (on script load)
+            script.onload = () => {
+              dataLayer.push({ event: 'gtm.js', 'gtm.start': new Date().getTime(), 'gtm.uniqueEventId': 0 });
+            };
+            script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-M84CDKD';
+            document.head.appendChild(script);
+          }
+
+          function initGTA() {
+            if (window.gtaDidInit) {
+              return false;
+            }
+            window.gtaDidInit = true;
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-205496631-3';
+            document.head.appendChild(script);
+          }
+        </script>
+
+        <script>
+          function guid() {
+            function s4() {
+              return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+            }
+
+            var result = '';
+
+            for (var i = 0; i < 8; i++)
+              result += s4();
+
+            return result;
+          }
+
+          window.dataLayer = window.dataLayer || [];
+
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+
+          gtag('js', new Date());
+          gtag('set', { 'sessionId': guid() });
+          gtag('set', { 'userTypeId': '{{ auth()->user() ? auth()->user()->ultra_uuid ?? '' : 'visitor' }}' });
+          auth
+          gtag('set', { 'user_id': '{{ auth()->user()->ultra_uuid ?? auth()->user()->id }}' });
+          endauth
+          gtag('config', 'UA-205496631-2', {
+            'custom_map': {
+              'dimension1': 'clientId',
+              'dimension2': 'sessionId',
+              'dimension3': 'userTypeId'
+            }
+          });
+        </script>
+    endif
+    #}
+</head>
+<body class="antialiased overflow-clip">
+{#
+if(config('app.env') == 'production')
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=1366483820617084&ev=PageView&noscript=1" alt='facebook noscript'>
+    </noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M84CDKD"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+endif
+#}
+<div class="min-h-screen flex flex-col justify-between">
+    <div>
+        {#
+        if(session()->has('error-message'))
+            <x-header.error-notification :message="session()->get('error-message')" />
+        endif
+
+        auth
+            if(auth()->user()->hasNotPaidOrders())
+                <x-header.error-notification :message="__('ultra.is-not-payment-warning')" />
+            endif
+        endauth
+        auth
+            unless(auth()->user()->hasVerifiedMobile())
+                <x-header.phone-notification :userPhone="auth()->user()->phone" />
+            endunless
+        endauth
+
+        include('partials.header')
+        #}
+        {% include 'partials/header.twig' %}
+        
+        <!-- Page Content -->
+        <main class="transition duration-300 bg-white dark:bg-gray-900">
+            {# isset($header) #}
+                <div class="container mx-auto my-8">
+                    {{ header }}
+                </div>
+            {# endisset #}
+
+            {% block main_content %}
+            {% endblock %}
+
+        </main>
+    </div>
+    <div>
+        {# include('partials.footer')#}
+    </div>
+</div>
+
+{#livewire('cookie-consent')#}
+
+<div id="products-loader"
+     class="text-blue fixed z-50 h-full w-full overflow-visible m-auto top-0 left-0 bottom-0 right-0 flex items-center justify-center"
+     style="display: none">
+    <div class="bg w-full h-full bg-white opacity-50 absolute"></div>
+    <svg class="animate-pulse" width="100" height="100" viewBox="0 0 380 286" fill="none"
+         xmlns="http://www.w3.org/2000/svg">
+        <path
+                d="M374.309 262.863C347.169 217.122 320.614 174.072 273.82 96.1609C272.533 93.8212 236.853 31.8197 235.332 29.363C223.4 10.2946 206.788 0 190.527 0H188.656C172.278 0 155.9 10.6455 143.851 29.363C142.33 31.8197 119.986 70.7753 111.095 85.7493C94.8344 113.124 33.4178 216.654 6.39445 260.64C2.53397 266.841 -7.29272 279.124 9.436 283.218C36.6933 289.886 63.3657 283.218 84.3058 266.49C93.3136 259.588 101.268 250.346 107.82 239.583C115.658 226.364 123.262 212.794 130.982 199.575C148.296 170.329 165.376 140.849 183.859 109.731C185.614 106.455 187.72 103.18 189.591 99.9044C191.463 103.18 193.686 106.455 195.324 109.731C213.807 140.732 231.355 170.212 248.668 199.341C256.389 212.56 263.525 226.247 271.246 239.583C277.797 250.463 285.869 259.588 294.877 266.49C315.817 283.218 342.373 289.302 369.747 283.218C386.944 279.241 378.17 269.18 374.309 262.863Z"
+                fill="#123351" />
+        <path
+                d="M178.949 169.743L130.985 235.605C124.2 244.964 130.868 258.066 142.45 258.066H238.377C249.958 258.066 256.626 244.964 249.841 235.605L201.878 169.743C196.262 162.023 184.681 162.023 178.949 169.743Z"
+                fill="#D82222" />
+    </svg>
+</div>
+{#
+if(isset($bestPriceProducts) && $bestPriceProducts->isNotEmpty())
+    <div class="flex justify-center mt-1">
+        livewire('best-price-description', [
+            'bestPriceProducts' => $bestPriceProducts,
+            'productIds' => $productIds,
+            'modalTitle' => $modalTitle,
+            'modalDescription' => $modalDescription,
+            'status' => $status,
+            'activeModal' => true
+        ])
+    </div>
+endisset
+#}
+{#livewireScripts#}
+<script src="js/LottieFiles.js"></script>
+
+<script type="application/ld+json">
+    {
+        "context" : "http://schema.org",
+        "type" : "Organization",
+        "name" : "ultra.md",
+        "url" : "https://ultra.md/",
+        "logo": "images/ultra.svg",
+        "sameAs" : ["https://www.facebook.com/ultra.moldova","https://www.instagram.com/ultra.moldova","https://www.youtube.com/channel/UCGs9xB1rdCvik526qeoiRCw"]
+    }
+</script>
+
+<script>
+  let openProductModalBtn;
+
+  function toggleLoader() {
+    let loader = document.getElementById('products-loader');
+    loader.style.display = 'flex';
+  }
+  /*
+  Livewire.on('start-loader', function() {
+    toggleLoader();
+  });
+
+  Livewire.on('{{ loaderHideEvent }}', function() {
+    let loader = document.getElementById('products-loader');
+    loader.style.display = 'none';
+  });
+  */
+</script>
+{#
+if(config('app.env') == 'production')
+    if(app()->getLocale() == 'ru')
+        <script>
+          window.TalkMeSetup = {
+            language: 'ru'
+          };
+        </script>
+    else
+        <script>
+          window.TalkMeSetup = {
+            language: 'ro'
+          };
+        </script>
+    endif
+    <!-- Begin Talk-Me {literal} -->
+    <script>
+      (function(d, w, m) {
+        window.supportAPIMethod = m;
+        var s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.id = 'supportScript';
+        s.charset = 'utf-8';
+        s.async = true;
+        var id = '85b700e3b7ed2a85effe69a356d3bdfe';
+        s.src = 'https://lcab.talk-me.ru/support/support.js?h=' + id;
+        var sc = d.getElementsByTagName('script')[0];
+        w[m] = w[m] || function() {
+          (w[m].q = w[m].q || []).push(arguments);
+        };
+        if (sc) sc.parentNode.insertBefore(s, sc);
+        else d.documentElement.firstChild.appendChild(s);
+      })(document, window, 'TalkMe');
+    </script>
+    <!-- {/literal} End Talk-Me -->
+
+    <script>
+        Livewire.on('ga4RemoveFromCart', data => {
+            dataLayer.push({ ecommerce: null });
+            dataLayer.push({
+                event: 'remove_from_cart',
+                ecommerce: {
+                    items: JSON.parse(data)
+                }
+            });
+        });
+    </script>
+
+    <script>
+        Livewire.on('ga4AddToCart', data => {
+            dataLayer.push({ ecommerce: null });
+            dataLayer.push({
+                event: 'add_to_cart',
+                ecommerce: {
+                    items: JSON.parse(data)
+                }
+            });
+        });
+    </script>
+
+endif
+
+livewire('product-modal')
+livewire('find-best-price')
+livewire('products.preorder')
+livewire('products.credit-calculator')
+livewire('products.choose-gift')
+livewire('order.prepayment-modal')
+livewire('credit-success')
+
+stack('modals')
+stack('scripts')
+#}
+{% block prebody_js_scripts %}
+{% endblock %}
+</body>
+</html>
