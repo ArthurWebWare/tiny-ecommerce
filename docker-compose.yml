@@ -1,0 +1,40 @@
+services:
+  proxy:
+    build:
+      context: ./docker/nginx
+    volumes:
+      - ./:/app
+    container_name: ${APP_NAME}-nginx
+    restart: always
+    ports:
+      - "8081:80"
+    depends_on:
+      - php-fpm
+    networks:
+      - ${APP_NAME}-network
+      -
+  php-fpm:
+    build:
+      context: ./docker/php-fpm
+    volumes:
+      - ./:/app
+    restart: always
+    ports:
+      - '9000:9000'
+    container_name: ${APP_NAME}-web
+    depends_on:
+      - db
+    networks:
+      - ${APP_NAME}-network
+
+  db:
+    image: postgres:13.3
+    container_name: ${APP_NAME}-db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    volumes:
+      - ./docker/postgres/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"

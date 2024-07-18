@@ -476,3 +476,9 @@ composer.lock
 ##### Yoda
 cache/
 logs/
+
+### ENV
+.env
+
+### JETBRAINS IDEs
+.idea/
