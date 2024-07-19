@@ -482,3 +482,6 @@ logs/
 
 ### JETBRAINS IDEs
 .idea/
+
+##Docker DB VOLUMES
+/docker/postgres/data/

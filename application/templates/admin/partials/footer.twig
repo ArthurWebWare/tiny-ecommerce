@@ -1,0 +1,250 @@
+<nav class="bg-dark-blue-800 dark:bg-gray-1000 hidden w-full justify-end py-2 md:flex">
+    <div class="container mx-auto">
+        <div class="mb-3 flex items-center justify-between gap-6">
+            <div id="hover_effect" class="absolute top-2 my-auto h-5 w-5 origin-center transform rounded-full bg-white opacity-0 transition-all duration-700">
+            </div>
+            <ul class="flex flex-shrink-0 items-center">
+                <li class="flex items-center">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 5.83337C11.1051 5.83337 12.1649 6.27236 12.9463 7.05376C13.7277 7.83516 14.1667 8.89497 14.1667 10" stroke="#f3f4f6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M12.5008 17.4999C11.2091 17.1919 9.98377 16.6526 8.88408 15.9083L10.4007 13.7333C10.6501 13.3929 11.0192 13.1598 11.4337 13.0809C11.8482 13.002 12.2772 13.0833 12.6341 13.3083C12.9091 13.4833 13.1924 13.6416 13.4674 13.7999C13.6744 13.9011 13.8582 14.0442 14.0071 14.22C14.1561 14.3958 14.2669 14.6006 14.3327 14.8214C14.3985 15.0423 14.4178 15.2744 14.3893 15.503C14.3609 15.7317 14.2853 15.9519 14.1674 16.1499L13.6507 16.9416C13.5585 17.1576 13.3913 17.333 13.18 17.4355C12.9687 17.5381 12.7275 17.561 12.5008 17.4999V17.4999ZM3.05908 6.3916L3.89242 5.87493C4.08567 5.74952 4.30282 5.66553 4.53016 5.62827C4.7575 5.59101 4.9901 5.60128 5.21328 5.65845C5.43645 5.71561 5.64535 5.81842 5.82679 5.96039C6.00822 6.10235 6.15826 6.28039 6.26742 6.48327C6.42575 6.78327 6.58408 7.0666 6.75908 7.3166C6.98409 7.67352 7.06535 8.10249 6.98647 8.51698C6.9076 8.93146 6.67446 9.3006 6.33408 9.54993L4.11742 11.0916C3.36699 10.0013 2.81933 8.78461 2.50075 7.49993C2.45062 7.2791 2.47893 7.0477 2.58081 6.84546C2.68269 6.64323 2.85179 6.48276 3.05908 6.3916V6.3916Z" stroke="#f3f4f6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M4.11719 11.0916C4.72956 12.0521 5.45103 12.9385 6.26719 13.7332C7.06187 14.5494 7.94832 15.2708 8.90885 15.8832" stroke="#f3f4f6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9.1665 2.55C9.44301 2.51649 9.7213 2.49979 9.99984 2.5C11.989 2.5 13.8966 3.29018 15.3031 4.6967C16.7097 6.10322 17.4998 8.01088 17.4998 10C17.5 10.2785 17.4833 10.5568 17.4498 10.8333" stroke="#f3f4f6" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <a href="tel:+37360000000"
+                       class="ml-3 border-b border-dashed border-gray-100 text-xs font-semibold text-gray-100 transition duration-200 hover:text-white hover:text-white xl:text-sm">+373 60 000 000</a>
+                </li>
+                <li class='pl-2'>
+                    <span
+                        class="text-xs font-semibold text-gray-100 xl:text-sm">(09:00 - 20:00)</span>
+                </li>
+            </ul>
+            <div class="flex items-center gap-x-4 xl:gap-x-2">
+                <div class="relative" x-data="{ element: document.querySelector('.header-links') }">
+                    <button
+                        @click="element.scrollLeft += 120; element.scrollWidth - element.clientWidth == element.scrollLeft ? element.scrollLeft = 0 : null"
+                        class="absolute -right-4 top-0 bottom-0 z-20 my-auto xl:hidden">
+                        <svg width="9" height="13" viewBox="0 0 9 13" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7.62932 5.45475L2.01835 0.779355C1.22926 0.0827298 0.0895394 0.779348 0.0895394 1.8734L0.0895395 11.126C0.0895395 12.2212 1.22926 12.9167 2.01835 12.2212L7.62932 7.54462C8.24295 7.14607 8.24295 5.95266 7.62932 5.45475Z"
+                                fill="#D92121" />
+                        </svg>
+                    </button>
+                    <ul x-data="hover('#hover_effect')"
+                        class="header-links relative relative flex items-center overflow-hidden scroll-smooth">
+                        <li class="flex-shrink-0"
+                            @unless(is_active('friends')) x-on:mouseenter="hover_effect(event.currentTarget)" @endunless>
+                            <a href="{#{ route('friends') }#}#"
+                               class="px-4 text-xs font-semibold text-gray-100 xl:text-sm">
+                                {#{ __('ultra.ultra-friends') }#}
+                                {{ lang('ultra-friends') }}
+                            </a>
+                        </li>
+                        <li class="flex-shrink-0"
+                            @unless(is_active('credit')) x-on:mouseenter="hover_effect(event.currentTarget)" @endunless>
+                            <a href="{#{ route('credit') }#}#"
+                               class="{#{ is_active('credit', 'bg-[#334f61] rounded-xl h-[24px] py-0.5') }#} px-4 text-xs font-semibold text-gray-100 xl:text-sm">
+                                {#{ __('ultra.ultra-credit') }#}
+                                {{ lang('ultra-credit') }}
+                            </a>
+                        </li>
+                        <li class="flex-shrink-0"
+                            @unless(is_active('showroom')) x-on:mouseenter="hover_effect(event.currentTarget)" @endunless>
+                            <a href="{#{ route('showroom') }#}#"
+                               class="{#{ is_active('showroom', 'bg-[#334f61] rounded-xl h-[24px] py-0.5') }#} px-4 text-xs font-semibold text-gray-100 xl:text-sm">
+                                {#{ __('ultra.showroom') }#}
+                                {{ lang('showroom') }}
+                            </a>
+                        </li>
+                        <li class="hidden flex-shrink-0 lg:block"
+                            @unless(is_active('promo_home')) x-on:mouseenter="hover_effect(event.currentTarget)" @endunless>
+                            <a href="{#{ route('promo_home') }#}#"
+                               class="{#{ is_active('promo_home', 'bg-[#334f61] rounded-xl h-[24px] pt-0.5') }#} -mb-0.5 px-4 text-xs font-semibold text-gray-100 xl:text-sm">{#{ __('ultra.offers') }#}{{ lang('offers') }}</a>
+                        </li>
+                        <li class="flex-shrink-0"
+                            @unless(is_active('contests')) x-on:mouseenter="hover_effect(event.currentTarget)" @endunless>
+                            <a href="{#{ route('contests') }#}"
+                               class="{#{ is_active('contests', 'bg-[#334f61] rounded-xl h-[24px] py-0.5') }#} px-4 text-xs font-semibold text-gray-100 xl:text-sm">{#{ __('ultra.contests') }#}{{ lang('contests') }}</a>
+                        </li>
+                        <li class="flex-shrink-0"
+                            @unless(is_active('lowest_price')) x-on:mouseenter="hover_effect(event.currentTarget)" @endunless>
+                            <a href="{#{ route('lowest_price') }#}#"
+                               class="{#{ is_active('lowest_price', 'bg-[#334f61] rounded-xl h-[24px] py-0.5') }#} px-4 text-xs font-semibold text-gray-100 xl:text-sm">{#{ __('ultra.lowest-price') }#}{{ lang('lowest-price') }}</a>
+                        </li>
+                        <li class="flex-shrink-0"
+                            @unless(is_active('delivery')) x-on:mouseenter="hover_effect(event.currentTarget)" @endunless>
+                            <a href="{#{ route('delivery') }#}#"
+                               class="{#{ is_active('delivery', 'bg-[#334f61] rounded-xl h-[24px] py-0.5') }#} px-4 text-xs font-semibold text-gray-100 xl:text-sm">{#{ __('ultra.delivery') }#}{{ lang('delivery') }}</a>
+                        </li>
+                        <li class="flex-shrink-0"
+                            @unless(is_active('contacts')) x-on:mouseenter="hover_effect(event.currentTarget)" @endunless>
+                            <a href="{#{ route('contacts') }#}#"
+                               class="{#{ is_active('contacts', 'bg-[#334f61] rounded-xl h-[24px] py-0.5') }#} px-4 text-xs font-semibold text-gray-100 xl:text-sm">{#{ __('ultra.contacts') }#}{{ lang('contacts') }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex items-center">
+                    {#{{-- @livewire('dark-mode-toggle') --}}#}
+                    <span class="flex items-center pl-4">
+                        <div class="relative flex justify-center items-center">
+                            <a class="w-7" href="https://ultra.md/ru">
+                                <img src="https://ultra.md/images/icons/ru.svg" width="28" height="26" class="transition duration-300 transform hover:scale-105 hover:shadow-xl" alt="russian-language">
+                            </a>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div x-data="initHeader()" x-init="scroll()"
+     @if (!is_topbrand_route()) :class='{ "top-0" : ! scrollToTop, "-top-32" : scrollToTop }' @endif
+     class="sticky z-40 transition-all duration-300 md:-mt-3"
+     @open-menu.window="showMenu = !showMenu; scrollToTop = false; document.querySelector('html').classList.toggle('overflow-hidden'); closeFilterMenu()">
+    <header class="bg-blue header pt-3 md:py-3 dark:bg-gray-900 md:h-[72px]">
+        <div class="container mx-auto h-full">
+            <div class="flex items-center justify-between h-full">
+                <div class="flex items-center gap-x-4">
+                    <div class='flex-shrink-0 sm:order-2'>
+                        <a href="{#{ route('main') }#}#">
+                            <svg id="header_logo" width="173" height="31" viewBox="0 0 1414 248"
+                                 fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M1050.99 245.348C1016.62 247.987 985.783 245.348 961.991 223.364C955.823 217.208 949.654 210.173 944.367 201.379C933.793 184.671 917.932 176.756 890.615 176.756H887.972C880.041 176.756 863.298 176.756 855.368 176.756C850.081 176.756 838.625 174.998 824.526 204.897C815.715 225.123 799.853 236.555 780.467 243.59C769.012 247.107 761.962 244.469 761.962 230.399C762.844 199.62 762.844 168.842 761.962 138.943C761.962 123.993 767.25 119.596 781.348 119.596C816.596 119.596 851.843 119.596 887.09 119.596C904.714 119.596 923.219 119.596 940.843 119.596C947.892 119.596 954.06 120.476 961.11 117.838C961.991 117.838 964.635 116.958 965.516 116.079C975.209 110.802 985.783 102.009 984.021 87.9385C982.258 75.6271 974.328 68.592 963.753 65.9539C961.991 65.9539 959.347 65.0745 956.704 65.0745C932.031 64.1951 908.239 64.1951 883.566 64.1951C870.348 64.1951 856.249 64.1951 843.031 63.3157C828.051 63.3157 816.596 58.9188 809.546 51.0043C801.616 43.0899 798.091 32.5372 797.21 19.3465C796.329 4.39692 803.378 0 814.833 0C815.715 0 816.596 0 817.477 0C838.625 0 859.774 0 880.922 0C887.972 0 895.021 0 902.071 0H950.536C1000.76 1.75877 1035.13 14.9495 1048.35 62.4363C1049.23 65.0745 1050.11 66.8332 1050.11 69.4714C1058.92 111.682 1043.94 146.857 1000.76 165.324C1019.27 187.309 1036.89 208.414 1054.52 229.519C1063.33 238.313 1064.21 244.469 1050.99 245.348Z"
+                                    fill="white" />
+                                <path
+                                    d="M539.905 182.912C539.905 182.912 539.024 182.912 539.905 182.912C539.024 182.912 538.143 182.912 538.143 182.912H391.866C386.579 182.912 383.054 178.515 383.054 174.118V67.7129C383.054 49.2458 376.005 32.5375 363.668 20.2261C352.213 8.7941 336.352 0.879639 317.847 0.879639C312.56 0.879639 309.035 5.27656 309.035 9.67349V236.555C309.035 241.831 313.441 245.349 317.847 245.349C317.847 245.349 451.787 247.107 496.727 245.349C501.133 245.349 506.42 244.469 509.945 242.71C517.875 240.072 524.925 235.675 530.212 229.52C539.905 219.846 545.192 206.656 546.073 192.586V191.706C546.073 188.189 543.43 184.671 539.905 182.912Z"
+                                    fill="white" />
+                                <path
+                                    d="M783.111 44.8486C782.23 40.4517 780.468 36.0548 778.706 31.6579C776.062 25.5022 772.537 21.1052 768.131 15.8289C763.725 11.432 758.438 7.91446 753.151 5.27631C747.864 2.63815 744.339 0.879385 738.171 0C736.409 0 735.528 0 733.765 0C732.003 0 731.122 0 730.24 0H693.231H602.469H565.459C564.578 0 564.578 0 563.697 0H518.757C516.994 0 514.351 0.879385 513.469 2.63815C511.707 4.39692 511.707 6.15569 511.707 7.91446C511.707 11.432 511.707 14.9495 512.588 18.4671C513.469 22.864 515.232 27.2609 516.994 31.6579C519.638 37.8135 523.162 42.2105 527.568 47.4868C531.974 51.8837 537.261 55.4012 542.548 58.0394C547.836 60.6776 551.36 62.4363 557.529 63.3157C559.291 63.3157 561.934 63.3157 563.697 63.3157C564.578 63.3157 564.578 63.3157 565.459 63.3157H602.469C606.875 63.3157 611.281 67.7126 611.281 72.9889V237.434C611.281 242.71 615.687 247.107 620.974 247.107H676.488C681.775 247.107 686.181 242.71 686.181 237.434V72.9889C686.181 67.7126 689.706 64.1951 694.993 63.3157H732.003C732.884 63.3157 734.646 63.3157 735.528 63.3157H777.824C779.587 63.3157 782.23 62.4363 783.111 60.6776C784.874 58.9188 784.874 57.16 784.874 55.4012C784.874 51.8837 783.993 48.3662 783.111 44.8486Z"
+                                    fill="white" />
+                                <path
+                                    d="M1407.87 227.761C1384.96 188.188 1361.17 149.495 1337.38 109.923C1332.97 102.009 1327.68 93.2148 1323.28 83.5416C1322.4 81.7828 1321.51 80.024 1319.75 77.3859C1318.87 76.5065 1318.87 75.6271 1317.99 73.8683C1310.94 60.6776 1303.89 47.4868 1295.96 35.1754C1295.96 34.296 1295.96 34.296 1295.08 34.296C1293.32 30.7785 1291.55 28.1403 1289.79 25.5022C1279.22 9.67323 1265.12 0 1251.02 0H1249.26C1235.16 0 1221.06 8.79385 1210.48 25.5022C1209.6 27.2609 1206.96 30.7785 1205.2 34.296L1204.32 35.1754C1195.5 47.4868 1189.34 60.6776 1182.29 73.8683C1180.52 76.5065 1178.76 80.024 1177 82.6622C1170.83 93.2148 1164.66 103.767 1160.26 112.561C1137.35 150.375 1114.44 188.188 1092.41 226.002C1088.88 231.278 1080.07 239.193 1095.05 242.71C1118.84 247.987 1141.75 242.71 1159.38 228.64C1167.31 222.484 1174.36 214.57 1179.64 205.776C1186.69 194.344 1192.86 182.912 1199.03 171.48C1214.01 146.857 1228.99 121.355 1244.85 94.9736C1246.61 92.3354 1248.38 89.6973 1250.14 86.1797C1251.9 88.8179 1253.66 91.456 1255.43 94.9736C1271.29 121.355 1286.27 146.857 1301.25 171.48C1308.3 182.912 1313.58 194.344 1320.63 205.776C1325.92 215.449 1332.97 222.484 1340.9 228.64C1358.52 242.71 1381.43 247.987 1405.23 242.71C1420.21 240.951 1411.39 233.037 1407.87 227.761Z"
+                                    fill="white" />
+                                <path
+                                    d="M276.431 16.7083C276.431 -0.879427 267.619 -0.879427 255.282 2.63811C229.728 11.432 212.986 33.4166 212.104 63.3157C211.223 84.4209 212.104 105.526 211.223 125.752C211.223 167.083 200.649 178.515 159.234 180.274C155.709 180.274 147.778 181.153 138.966 181.153C130.154 181.153 121.343 180.274 118.699 180.274C77.2835 177.636 66.7093 167.083 66.7093 125.752C66.7093 104.647 66.7093 83.5415 65.8281 63.3157C64.9469 34.296 48.2044 11.432 22.6501 2.63811C9.43236 -0.879427 -0.260651 -0.879427 0.620533 16.7083C1.50172 55.4012 -1.14183 94.0941 0.620533 132.787C3.26408 191.706 25.2937 223.364 79.927 237.434C99.313 242.71 118.699 245.348 138.966 245.348C158.352 245.348 178.62 241.831 198.006 237.434C252.639 223.364 274.668 191.706 277.312 132.787C278.193 94.0941 275.55 55.4012 276.431 16.7083Z"
+                                    fill="white" />
+                                <path
+                                    d="M1240.44 146.857L1199.03 203.138C1192.86 211.053 1199.03 222.485 1208.72 222.485H1290.67C1300.37 222.485 1306.53 211.053 1300.37 203.138L1258.95 146.857C1255.42 140.702 1244.85 140.702 1240.44 146.857Z"
+                                    fill="#D92121" />
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="sm:order-1 sm:ml-0 ml-5 bg-blue font-bold">
+                        <button
+                            x-on:click=" $dispatch('open-menu');"
+                            class="flex cursor-pointer items-center text-white font-bold sm:py-0 py-4">
+
+                            <svg width="28" class='mr-3 menu-animation' :class="{ 'move-animation': showMenu }"
+                                 height="27" viewBox="0 0 28 27" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path class='top-line' d="M18.5 13.6L1.6 13.6001" stroke="white" stroke-width="3.2"
+                                      stroke-linecap="round" />
+                                <line x1="26.4" y1="24.6" x2="1.6" y2="24.6" stroke="white" stroke-width="3.2"
+                                      stroke-linecap="round" />
+                                <line x1="26.4" y1="1.6" x2="1.6" y2="1.6" stroke="white" stroke-width="3.2"
+                                      stroke-linecap="round" />
+                            </svg>
+
+                            <span class='hidden xl:block'>{#{ __('ultra.menu') }#}{{ lang('menu') }}</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="pl-12 sm:flex sm:items-center sm:pl-0 md:w-3/5 gap-1 md:gap-3">
+
+                    <div x-data="{ showSearch: false }" x-on:show-search.window="showSearch = true; document.querySelector('html').classList.add('overflow-hidden'); document.getElementById('mobile-search').focus();"
+                         x-on:hide-search.window="showSearch = false; document.querySelector('html').classList.remove('overflow-hidden')" :class="{ 'sm:hidden': !showSearch }"
+                         class="sm:fixed sm:w-full sm:top-0 sm:p-4 sm:pb-20 sm:left-0 sm:bg-white sm:z-[60] sm:h-full">
+                        @livewire('products.dropdown-products')
+                    </div>
+
+                    <a href="tel:+373 60000000"
+                       class="text-gray-light pl-4 text-xs underline opacity-50 hover:text-white hover:opacity-100 md:hidden">
+                        <svg width="26" height="26" viewBox="0 0 26 26" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13 7.58337C14.4366 7.58337 15.8143 8.15406 16.8302 9.16988C17.846 10.1857 18.4167 11.5635 18.4167 13"
+                                stroke="#7CB2D3" stroke-width="1.625" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M16.2512 22.75C14.572 22.3495 12.9791 21.6485 11.5495 20.6809L13.5212 17.8534C13.8453 17.4109 14.3252 17.1078 14.864 17.0052C15.4028 16.9027 15.9605 17.0084 16.4245 17.3009C16.782 17.5284 17.1503 17.7342 17.5078 17.94C17.777 18.0716 18.0159 18.2575 18.2095 18.4861C18.4031 18.7147 18.5472 18.9809 18.6327 19.268C18.7182 19.5551 18.7433 19.8568 18.7063 20.154C18.6693 20.4513 18.5711 20.7376 18.4178 20.995L17.7462 22.0242C17.6262 22.3049 17.4089 22.533 17.1342 22.6663C16.8596 22.7997 16.546 22.8294 16.2512 22.75V22.75ZM3.977 8.30919L5.06034 7.63752C5.31156 7.47448 5.59386 7.3653 5.8894 7.31686C6.18495 7.26842 6.48733 7.28178 6.77746 7.35609C7.06758 7.4304 7.33915 7.56405 7.57502 7.74861C7.81088 7.93317 8.00593 8.16462 8.14784 8.42836C8.35367 8.81836 8.5595 9.18669 8.787 9.51169C9.07951 9.97568 9.18515 10.5333 9.08261 11.0722C8.98007 11.611 8.67699 12.0909 8.2345 12.415L5.35284 14.4192C4.37728 13.0018 3.66533 11.4201 3.25117 9.75002C3.18601 9.46294 3.22281 9.16212 3.35525 8.89921C3.48769 8.6363 3.70752 8.42769 3.977 8.30919V8.30919Z"
+                                stroke="#7CB2D3" stroke-width="1.625" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M5.35254 14.4191C6.14863 15.6678 7.08653 16.8201 8.14754 17.8532C9.18062 18.9142 10.333 19.8521 11.5817 20.6482"
+                                stroke="#7CB2D3" stroke-width="1.625" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path
+                                d="M11.9165 3.315C12.276 3.27144 12.6377 3.24973 12.9998 3.25C15.5857 3.25 18.0656 4.27723 19.8941 6.10571C21.7226 7.93419 22.7498 10.4141 22.7498 13C22.7501 13.3621 22.7284 13.7239 22.6848 14.0833"
+                                stroke="#7CB2D3" stroke-width="1.625" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <div class="flex items-center justify-center sm:ml-4 md:hidden md:w-full">
+                        <x-header.change-language />
+                    </div>
+                    <div class="flex items-center justify-center sm:ml-4 md:hidden md:w-full">
+                        <x-user.profile />
+                    </div>
+                </div>
+                <div class="flex flex-shrink-0 items-center sm:hidden">
+                    @auth
+                        <div class="pl-8 text-white">
+                            @livewire('compare.compare-indicator')
+                        </div>
+                        <div class="pl-8 text-white">
+                            @livewire('favorite.favorite-indicator')
+                        </div>
+                    @endauth
+                    <div class="relative pl-8 text-white">
+                        @livewire('cart.cart-indicator')
+                    </div>
+                    <div class="ml-8 flex items-center justify-center">
+                        <x-user.profile />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="md:hidden bg-blue pb-3 pt-2 container mx-auto">
+        <div class="relative sm:h-full">
+            <div class="relative z-40" @click="$dispatch('show-search')">
+                <label>
+                    <span
+                        onclick="closeFilterMenu()"
+                        @click="showDropdown = true"
+                        class="flex items-center pl-3 w-full h-[35px] border border-sapphire-blue-500 dark:border-gray-900 dark:bg-gray-800 text-sm pr-12 sm:pr-20 transition duration-300 bg-dark-blue-t-800 rounded text-light-blue-200"
+                    >
+                    {#{ __('ultra.search') }#}{{ lang('search') }}
+                    </span>
+                </label>
+
+                <button aria-label="search" type="submit" class="absolute right-4 top-1.5">
+                    <svg width="23" height="23" viewBox="0 0 23 23" fill="none"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M21.3333 21.3333L15.5 15.5M17.8333 9.66667C17.8333 11.2819 17.3544 12.8608 16.457 14.2038C15.5596 15.5468 14.2842 16.5936 12.7919 17.2117C11.2997 17.8298 9.65761 17.9915 8.07343 17.6764C6.48925 17.3613 5.03409 16.5835 3.89196 15.4414C2.74984 14.2992 1.97204 12.8441 1.65692 11.2599C1.34181 9.67573 1.50354 8.03368 2.12165 6.54142C2.73977 5.04916 3.78651 3.7737 5.12951 2.87633C6.47251 1.97897 8.05146 1.5 9.66667 1.5C11.8326 1.5 13.9098 2.36041 15.4414 3.89196C16.9729 5.42351 17.8333 7.50073 17.8333 9.66667V9.66667Z"
+                            stroke-width="2.33333"
+                            stroke-linecap="round" stroke-linejoin="round" stroke="white"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <x-categories />
+
+    <x-mobile-navigation />
+    {#
+    @if (request()->routeIs('product') && !is_string(request()->product))
+        <x-product-navigation :product="request()->product" />
+    @else
+        <x-mobile-navigation />
+    @endif
+    #}
+</div>
+

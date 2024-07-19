@@ -3,9 +3,11 @@
 declare(strict_types=1);
 
 use App\ContainerFactory;
+use App\Controllers\Admin\Pages\PagesController;
 use App\Controllers\ExceptionDemoController;
 use App\Controllers\HelloController;
 use App\Controllers\HomeController;
+use App\Helpers\Alias;
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
 use Slim\Views\Twig;
@@ -27,15 +29,13 @@ try {
     die($e->getMessage());
 }
 
+//Aliases
+$aliases = require $rootPath .  '/application/config/aliases.php';
+Alias::loadAliases($aliases);
+
 // Set the container to create the App with AppFactory.
 AppFactory::setContainer($container);
 $app = AppFactory::create();
-
-// Set the cache file for the routes. Note that you have to delete this file
-// whenever you change the routes.
-$app->getRouteCollector()->setCacheFile(
-    $rootPath . '/cache/routes.cache'
-);
 
 // Add the routing middleware.
 $app->addRoutingMiddleware();
@@ -56,6 +56,15 @@ $app->group('/', function (RouteCollectorProxy $group) {
     $group->get('', HomeController::class)->setName('home');
     $group->get('hello/{name}', HelloController::class)->setName('hello');
     $group->get('exception-demo', ExceptionDemoController::class)->setName('exception-demo');
+});
+
+$app->group('/admin/', function (RouteCollectorProxy $group) {
+    //Custom Pages CRUD
+    $group->get('custom-pages', [PagesController::class, 'listAction'])->setName('List of custom pages');
+    $group->get('custom-page/{slug}', [PagesController::class, 'indexAction'])->setName('Edit custom page');
+    $group->post('custom-page/{slug}', [PagesController::class, 'createAction']);
+    $group->put('custom-page/{slug}', [PagesController::class, 'updateAction']);
+    $group->delete('custom-page/{slug}', [PagesController::class, 'deleteAction']);
 });
 
 // Run the app.

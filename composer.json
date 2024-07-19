@@ -21,7 +21,11 @@
     "nyholm/psr7-server": "^1.1",
     "php-di/php-di": "^6",
     "monolog/monolog": "^2.0",
-    "predis/predis": "^2.2"
+    "predis/predis": "^2.2",
+    "almasaeed2010/adminlte": "~3.2",
+    "cocur/slugify": "^4.5",
+    "vlucas/phpdotenv": "^5.6",
+    "illuminate/database": "^11.16"
   },
   "autoload-dev": {
     "psr-4": {

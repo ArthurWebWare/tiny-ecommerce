@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Controllers\Admin\Pages\PagesController;
 use App\Controllers\ExceptionDemoController;
 use App\Controllers\HelloController;
 use App\Controllers\HomeController;
@@ -19,5 +20,8 @@ return [
     },
     HomeController::class => function (ContainerInterface $container): HomeController {
         return new HomeController($container->get(Twig::class), $container->get(Preferences::class));
+    },
+    PagesController::class => function (ContainerInterface $container): PagesController {
+        return new PagesController($container->get(Twig::class), $container->get(Preferences::class));
     }
 ];
